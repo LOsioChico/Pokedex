@@ -1,1 +1,5 @@
 export * from './AdaptativeBackground'
+export * from './InputSearch'
+export * from './PokemonImage'
+export * from './PokemonStats'
+export * from './PokemonTypes'
