@@ -3,6 +3,12 @@
 @tailwind utilities;
 @tailwind base;
 
+@layer utilities {
+  .clip-bg-path {
+    clip-path: polygon(0 0, 60% 0, 40% 100%, 0% 100%);
+  }
+}
+
 body {
   font-family: 'Nunito', sans-serif;
   background-image: url('@/assets/PokedexBackground.png');

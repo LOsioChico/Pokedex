@@ -20,22 +20,22 @@ export const PokemonDetail: React.FC = () => {
   return (
     <>
       <AdaptativeBackground image={pokemon?.image}>
-        <div className='mx-auto mt-8 w-11/12 text-lg font-bold'>
+        <div className='mx-auto mt-8 w-11/12 text-lg font-bold drop-shadow-md'>
           <p>#{`${pokemon?.id}`.padStart(3, '0')}</p>
-          <p className='text-3xl capitalize drop-shadow-md'>{pokemon?.name}</p>
+          <p className='text-3xl capitalize'>{pokemon?.name}</p>
         </div>
 
         <div className='m-20 mr-0 mt-24 flex w-full justify-evenly drop-shadow-md'>
           <img
             className='h-80 w-80'
             src={pokemon?.image}
-            draggable='false'
             alt={pokemon?.name}
+            draggable='false'
           />
 
           <div className='absolute -left-6 top-24 text-sm drop-shadow-md'>
             <p>Height: {Number(pokemon?.height)} m</p>
-            <p>Height: {Number(pokemon?.weight) / 10} kg</p>
+            <p>Weight: {Number(pokemon?.weight) / 10} kg</p>
           </div>
 
           <div className='w-1/3 rounded-lg drop-shadow-md'>
