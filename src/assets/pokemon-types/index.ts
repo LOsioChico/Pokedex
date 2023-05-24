@@ -1,39 +1,22 @@
-import bug from 'bug.png'
-import dark from 'dark.png'
-import dragon from 'dragon.png'
-import electric from 'electric.png'
-import fairy from 'fairy.png'
-import fighting from 'fighting.png'
-import fire from 'fire.png'
-import flying from 'flying.png'
-import ghost from 'ghost.png'
-import grass from 'grass.png'
-import ground from 'ground.png'
-import ice from 'ice.png'
-import normal from 'normal.png'
-import poison from 'poison.png'
-import psychic from 'psychic.png'
-import rock from 'rock.png'
-import steel from 'steel.png'
-import water from 'water.png'
+type PokemonTypeImages = Record<string, string>
 
-export default {
-  bug,
-  dark,
-  dragon,
-  electric,
-  fairy,
-  fighting,
-  fire,
-  flying,
-  ghost,
-  grass,
-  ground,
-  ice,
-  normal,
-  poison,
-  psychic,
-  rock,
-  steel,
-  water,
+export const pokemonTypes: PokemonTypeImages = {
+  bug: '/src/assets/pokemon-types/bug.png',
+  dark: '/src/assets/pokemon-types/dark.png',
+  dragon: '/src/assets/pokemon-types/dragon.png',
+  electric: '/src/assets/pokemon-types/electric.png',
+  fairy: '/src/assets/pokemon-types/fairy.png',
+  fighting: '/src/assets/pokemon-types/fighting.png',
+  fire: '/src/assets/pokemon-types/fire.png',
+  flying: '/src/assets/pokemon-types/flying.png',
+  ghost: '/src/assets/pokemon-types/ghost.png',
+  grass: '/src/assets/pokemon-types/grass.png',
+  ground: '/src/assets/pokemon-types/ground.png',
+  ice: '/src/assets/pokemon-types/ice.png',
+  normal: '/src/assets/pokemon-types/normal.png',
+  poison: '/src/assets/pokemon-types/poison.png',
+  psychic: '/src/assets/pokemon-types/psychic.png',
+  rock: '/src/assets/pokemon-types/rock.png',
+  steel: '/src/assets/pokemon-types/steel.png',
+  water: '/src/assets/pokemon-types/water.png',
 }
