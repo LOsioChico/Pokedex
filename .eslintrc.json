@@ -10,6 +10,7 @@
     "plugin:react-hooks/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "standard-with-typescript",
     "eslint-config-prettier"
   ],
@@ -21,7 +22,8 @@
   },
   "plugins": ["react", "react-refresh"],
   "rules": {
-    "react-refresh/only-export-components": "warn"
+    "react-refresh/only-export-components": "warn",
+    "react/prop-types": "off"
   },
   "settings": {
     "react": {
