@@ -1,3 +1,5 @@
+import { type UseQueryResult } from '@tanstack/react-query'
+
 export interface Pokemon {
   id: string
   name: string
@@ -11,4 +13,9 @@ export interface Pokemon {
 export interface Stats {
   name: string
   value: number
+}
+
+export interface UsePokemons {
+  pokemon: Pokemon | undefined
+  pokemonQuery: UseQueryResult<Pokemon, unknown>
 }
