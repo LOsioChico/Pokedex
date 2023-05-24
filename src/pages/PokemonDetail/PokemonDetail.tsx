@@ -1,37 +1,43 @@
 import { pokemonTypes } from '@/assets/pokemon-types'
-import { pokemonStats } from '@/helpers'
+import { pokemonStats, pokemonStatsVariants, pokemonVariants } from '@/helpers'
 import { usePokemons } from '@/hooks/usePokemons'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useParams } from 'react-router-dom'
 import { AdaptativeBackground } from './components'
+import { InputSearch } from './components/InputSearch'
 
 export const PokemonDetail: React.FC = () => {
   const { id = '1' } = useParams()
   const { pokemon, pokemonQuery } = usePokemons(id)
 
-  if (pokemonQuery.isLoading)
-    return (
-      <img
-        className='mx-auto h-20 w-20 animate-spin'
-        src='/src/assets/pokeball.png'
-        alt='loading'
-      />
-    )
-
   return (
     <>
-      <AdaptativeBackground image={pokemon?.image}>
+      <AdaptativeBackground
+        image={pokemon?.image}
+        isLoading={pokemonQuery.isLoading}
+      >
         <div className='mx-auto mt-8 w-11/12 text-lg font-bold drop-shadow-md'>
           <p>#{`${pokemon?.id}`.padStart(3, '0')}</p>
           <p className='text-3xl capitalize'>{pokemon?.name}</p>
         </div>
 
         <div className='m-20 mr-0 mt-24 flex w-full justify-evenly drop-shadow-md'>
-          <img
-            className='h-80 w-80'
-            src={pokemon?.image}
-            alt={pokemon?.name}
-            draggable='false'
-          />
+          <AnimatePresence mode='wait'>
+            <motion.img
+              className='h-80 w-80'
+              key={`pokemon-${pokemon?.id}`}
+              src={pokemon?.image}
+              alt={pokemon?.name}
+              draggable='false'
+              variants={pokemonVariants}
+              initial='initial'
+              animate='animate'
+              exit='exit'
+              transition={{
+                type: 'spring',
+              }}
+            />
+          </AnimatePresence>
 
           <div className='absolute -left-6 top-24 text-sm drop-shadow-md'>
             <p>Height: {Number(pokemon?.height)} m</p>
@@ -40,16 +46,21 @@ export const PokemonDetail: React.FC = () => {
 
           <div className='w-1/3 rounded-lg drop-shadow-md'>
             <div className='flex h-16 w-80 gap-3 pl-4'>
-              {pokemon?.types.map((type) => {
-                return (
-                  <img
-                    key={type}
+              <AnimatePresence mode='sync'>
+                {pokemon?.types.map((type) => (
+                  <motion.img
                     className='h-14 w-14 items-center justify-center rounded-full bg-[#ffffffcb] p-2'
                     src={pokemonTypes[type]}
+                    key={type}
+                    layoutId={type}
                     alt={type}
+                    variants={pokemonVariants}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
                   />
-                )
-              })}
+                ))}
+              </AnimatePresence>
             </div>
 
             <ul className='mt-3 w-full pr-12'>
@@ -68,25 +79,36 @@ export const PokemonDetail: React.FC = () => {
                     </div>
 
                     <div className='relative h-2 w-2/3 overflow-hidden rounded-full bg-[#ffffffcb] py-2.5'>
-                      <div
+                      <motion.div
                         className='absolute top-0 z-10 h-full rounded-full py-2'
-                        style={{
+                        variants={pokemonStatsVariants}
+                        initial='initial'
+                        animate={{
+                          ...pokemonStatsVariants.animate,
                           width: `${stat.value / 1.5}%`,
                           backgroundColor: `${pokemonStats[stat.name].color}`,
                         }}
                       >
-                        <div
+                        <motion.div
                           className='absolute -top-2 h-full rounded-full bg-white py-2'
-                          style={{
+                          variants={pokemonStatsVariants}
+                          initial='initial'
+                          animate={{
+                            ...pokemonStatsVariants.animate,
                             width: `${stat.value / 1.5}% - 6px`,
                           }}
                         />
-                      </div>
+                      </motion.div>
                     </div>
                   </li>
                 )
               })}
             </ul>
+          </div>
+        </div>
+        <div className='flex w-full justify-end pr-44 font-bold text-black'>
+          <div className='w-2/5'>
+            <InputSearch />
           </div>
         </div>
       </AdaptativeBackground>

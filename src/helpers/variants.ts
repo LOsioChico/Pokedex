@@ -50,7 +50,29 @@ export const pokemonVariants = {
     opacity: 0,
     scale: 1.3,
     transition: {
-      duration: 0.3,
+      duration: 0.6,
     },
+  },
+}
+
+export const pokemonStatsVariants = {
+  initial: {
+    width: 0,
+  },
+  animate: {
+    transition: {
+      duration: 1,
+      ease: 'easeInOut',
+    },
+  },
+}
+
+export const defaultVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.6 },
   },
 }
